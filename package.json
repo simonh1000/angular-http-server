@@ -1,14 +1,14 @@
 {
   "name": "angular-http-server",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple http server for developers that supports apps with client side routing, such as Angular",
   "main": "angular-http-server.js",
   "repository": "https://github.com/simonh1000/angular-http-server.git",
   "keywords": [
-      "angular",
-      "http-server",
-      "server",
-      "routing"
+    "angular",
+    "http-server",
+    "server",
+    "routing"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
