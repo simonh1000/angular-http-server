@@ -1,17 +1,17 @@
 {
-    "name": "angular-http-server",
-    "version": "1.0.0",
-    "description": "Simple server to support client side routing, such as Angular",
-    "main": "angular-http-server.js",
-    "repository": "https://github.com/simonh1000/angular-http-server.git",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "engine": "0.12.x",
-    "author": "Simon Hampton",
-    "license": "ISC",
-    "preferGlobal": true,
-    "bin": {
-        "angular-http-server": "./angular-http-server.js"
-    }
+  "name": "angular-http-server",
+  "version": "1.0.1",
+  "description": "Simple server to support client side routing, such as Angular",
+  "main": "angular-http-server.js",
+  "repository": "https://github.com/simonh1000/angular-http-server.git",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engine": "0.12.x",
+  "author": "Simon Hampton",
+  "license": "ISC",
+  "preferGlobal": true,
+  "bin": {
+    "angular-http-server": "./angular-http-server.js"
+  }
 }
