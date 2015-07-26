@@ -1,6 +1,7 @@
 # Angular-HTTP-Server
 
-## Simple HTTP server for developing sites that use client side routing
+Rationale
+=========
 
 Very simple server that returns a file if it exists, or 'index.html' otherwise (i.e. when the url is a route).
 
