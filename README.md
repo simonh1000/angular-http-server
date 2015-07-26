@@ -6,6 +6,12 @@ Very simple server that returns a file if it exists, or 'index.html' otherwise (
 
 Other simple http-servers (correctly) give a 404 when you try to refresh a page that is a route on a client side app
 
-To use: `angular-http-server` from the root directory you want to serve, and turn your browser to `localhost:8080`.
+To use:
+=======
+```
+cd /path/to/site
+angular-http-server
+```
+Turn your browser to `localhost:8080`.
 
 Feedback via: https://github.com/simonh1000/angular-http-server
