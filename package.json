@@ -1,6 +1,6 @@
 {
   "name": "angular-http-server",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple server to support client side routing, such as Angular",
   "main": "angular-http-server.js",
   "repository": "https://github.com/simonh1000/angular-http-server.git",
