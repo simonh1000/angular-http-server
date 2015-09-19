@@ -1,8 +1,9 @@
 #!/usr/bin/env node
+
 var http = require("http");
 var fs = require("fs");
 
-function sendFile(fname) {}
+// function sendFile(fname) {}
 
 var server = http.createServer(function (req, res) {
     var possibleFilename = req.url.slice(1) || "dummy";

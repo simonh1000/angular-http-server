@@ -1,6 +1,8 @@
 {
   "name": "angular-http-server",
   "version": "1.0.4",
+  "author": "Simon Hampton",
+  "license": "ISC",
   "description": "Simple http server for developers that supports apps with client side routing, such as Angular",
   "main": "angular-http-server.js",
   "repository": "https://github.com/simonh1000/angular-http-server.git",
@@ -14,8 +16,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engine": "0.12.x",
-  "author": "Simon Hampton",
-  "license": "ISC",
   "preferGlobal": true,
   "bin": {
     "angular-http-server": "./angular-http-server.js"

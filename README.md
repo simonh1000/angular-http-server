@@ -1,18 +1,18 @@
 # Angular-HTTP-Server
 
-Rationale
-=========
+## Rationale
 
-Very simple server that returns a file if it exists, or 'index.html' otherwise (i.e. when the url is a route).
+Very simple server that returns a file if it exists, or 'index.html' otherwise (i.e. when the url requested is actually a SPA route).
 
-Other simple http-servers (correctly) give a 404 when you try to refresh a page that is a route on a client side app
+Other simple http-servers (correctly) give a 404 when you try to refresh your browser for a page that is a route on a client side app
 
-To use:
-=======
+## To use:
+
 ```
 cd /path/to/site
 angular-http-server
 ```
-Turn your browser to `localhost:8080`.
+
+And browse to `localhost:8080`.
 
 Feedback via: https://github.com/simonh1000/angular-http-server
