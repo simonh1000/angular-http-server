@@ -6,7 +6,9 @@ var fs = require("fs");
 // function sendFile(fname) {}
 
 var server = http.createServer(function (req, res) {
-    var possibleFilename = req.url.slice(1) || "dummy";
+    console.log(req.url);
+    var url = req.url.split('?')[0]
+    var possibleFilename = url.slice(1) || "dummy";
 
     fs.stat(possibleFilename, function (err, stats) {
 
@@ -21,6 +23,10 @@ var server = http.createServer(function (req, res) {
             console.log("Sending file: %s", possibleFilename);
             fileBuffer = fs.readFileSync(possibleFilename);
             res.writeHead(200, { 'Content-Type': 'text/' + fileExtension });
+            // if (fileExtension == "css") {
+            // } else {
+            //     res.writeHead(200, { 'Content-Type': 'application/x-font-eot' });
+            // }
         }
         else {
             console.log("Route %s, replacing with index.html", possibleFilename);
