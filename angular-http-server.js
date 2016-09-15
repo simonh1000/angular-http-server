@@ -6,7 +6,7 @@ var fs = require("fs");
 // function sendFile(fname) {}
 
 var server = http.createServer(function (req, res) {
-    console.log(req.url);
+    // console.log(req.url);
     var url = req.url.split('?')[0]
     var possibleFilename = url.slice(1) || "dummy";
 
