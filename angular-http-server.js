@@ -22,7 +22,7 @@ var server = http.createServer(function (req, res) {
 
             console.log("Sending file: %s", possibleFilename);
             fileBuffer = fs.readFileSync(possibleFilename);
-            res.writeHead(200, { 'Content-Type': 'text/' + fileExtension });
+            res.writeHead(200, { 'Content-Type': toMimeType(fileExtension) });
             // if (fileExtension == "css") {
             // } else {
             //     res.writeHead(200, { 'Content-Type': 'application/x-font-eot' });
@@ -39,4 +39,13 @@ var server = http.createServer(function (req, res) {
     });
 });
 
+function toMimeType(ext) {
+    console.log(ext);
+    switch (ext) {
+        case "js": 
+            return "application/javascript";
+        default: 
+            return 'text/' + ext;
+    }
+}
 server.listen(8080, function () { return console.log("Listening on 8080"); });

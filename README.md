@@ -16,3 +16,7 @@ angular-http-server
 And browse to `localhost:8080`.
 
 Feedback via: https://github.com/simonh1000/angular-http-server
+
+## To develop
+
+http://justjs.com/posts/npm-link-developing-your-own-npm-modules-without-tears
