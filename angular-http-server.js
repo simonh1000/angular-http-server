@@ -3,8 +3,6 @@
 var http = require("http");
 var fs = require("fs");
 
-// function sendFile(fname) {}
-
 var server = http.createServer(function (req, res) {
     // console.log(req.url);
     var url = req.url.split('?')[0]
@@ -23,10 +21,6 @@ var server = http.createServer(function (req, res) {
             console.log("Sending file: %s", possibleFilename);
             fileBuffer = fs.readFileSync(possibleFilename);
             res.writeHead(200, { 'Content-Type': toMimeType(fileExtension) });
-            // if (fileExtension == "css") {
-            // } else {
-            //     res.writeHead(200, { 'Content-Type': 'application/x-font-eot' });
-            // }
         }
         else {
             console.log("Route %s, replacing with index.html", possibleFilename);
@@ -40,11 +34,17 @@ var server = http.createServer(function (req, res) {
 });
 
 function toMimeType(ext) {
-    console.log(ext);
+    // console.log(ext);
+    // if (fileExtension == "css") {
+    // } else {
+    //     res.writeHead(200, { 'Content-Type': 'application/x-font-eot' });
+    // }
     switch (ext) {
-        case "js": 
+        case "js":
             return "application/javascript";
-        default: 
+        case "png":
+            return "image/png";
+        default:
             return 'text/' + ext;
     }
 }

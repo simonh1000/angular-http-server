@@ -1,6 +1,6 @@
 # Angular-HTTP-Server
 
-Should work with any Single Page App frmaework that use a router to change the URL
+Should work with any Single Page App framework that use a router to change the URL.
 
 ## Rationale
 
