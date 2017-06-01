@@ -16,6 +16,12 @@ cd /path/to/site
 angular-http-server
 ```
 
+## You can also (optionally) specify a port as well:
+
+```
+angular-http-server -p 8080
+```
+
 And browse to `localhost:8080`.
 
 Feedback via: https://github.com/simonh1000/angular-http-server
