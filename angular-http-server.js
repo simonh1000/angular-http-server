@@ -35,24 +35,19 @@ var server = http.createServer(function (req, res) {
 });
 
 function getPort() {
-  if (argv.p) {
-    var portNum = parseInt(argv.p);
-    if (!isNaN(portNum)) {
-      return portNum;
+    if (argv.p) {
+        var portNum = parseInt(argv.p);
+        if (!isNaN(portNum)) {
+            return portNum;
+        } else {
+            throw new Exception("Provided port number is not a number!");
+        }
     } else {
-      throw new Exception("Provided port number is not a number!");
+        return 8080;
     }
-  }else {
-    return 8080;
-  }
 }
 
 function toMimeType(ext) {
-    // console.log(ext);
-    // if (fileExtension == "css") {
-    // } else {
-    //     res.writeHead(200, { 'Content-Type': 'application/x-font-eot' });
-    // }
     switch (ext) {
         case "js":
             return "application/javascript";

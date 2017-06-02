@@ -1,6 +1,6 @@
 {
   "name": "angular-http-server",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "author": "Simon Hampton",
   "license": "ISC",
   "description": "Simple http server for developers that supports apps with client side routing, such as Angular",
@@ -21,7 +21,7 @@
       "email": "dale@daleslab.com"
     }
   ],
-  "engine": "0.12.x",
+  "engines" : { "node" : ">=4.0.0" },
   "preferGlobal": true,
   "bin": {
     "angular-http-server": "./angular-http-server.js"
