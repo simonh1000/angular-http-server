@@ -2,6 +2,7 @@
 
 var http = require("http");
 var fs = require("fs");
+var argv = require('minimist')(process.argv.slice(2));
 
 var server = http.createServer(function (req, res) {
     // console.log(req.url);
@@ -33,6 +34,19 @@ var server = http.createServer(function (req, res) {
     });
 });
 
+function getPort() {
+  if (argv.p) {
+    var portNum = parseInt(argv.p);
+    if (!isNaN(portNum)) {
+      return portNum;
+    } else {
+      throw new Exception("Provided port number is not a number!");
+    }
+  }else {
+    return 8080;
+  }
+}
+
 function toMimeType(ext) {
     // console.log(ext);
     // if (fileExtension == "css") {
@@ -48,4 +62,4 @@ function toMimeType(ext) {
             return 'text/' + ext;
     }
 }
-server.listen(8080, function () { return console.log("Listening on 8080"); });
+server.listen(getPort(), function () { return console.log("Listening on " + getPort()); });
