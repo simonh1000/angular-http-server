@@ -21,12 +21,15 @@
       "email": "dale@daleslab.com"
     }
   ],
-  "engines" : { "node" : ">=4.0.0" },
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "preferGlobal": true,
   "bin": {
     "angular-http-server": "./angular-http-server.js"
   },
   "dependencies": {
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "pem": "^1.9.7"
   }
 }

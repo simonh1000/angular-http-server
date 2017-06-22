@@ -10,19 +10,28 @@ Other simple http-servers (correctly) give a 404 when you try to refresh your br
 
 ## To use:
 
-```
+```sh
 npm install -g angular-http-server
 cd /path/to/site
 angular-http-server
 ```
 
-## You can also (optionally) specify a port as well:
+## Options
 
-```
+Specify a port using `-p <port number>`
+
+```sh
 angular-http-server -p 8080
 ```
 
 And browse to `localhost:8080`.
+
+
+HTTPS can be enabled (using a generated self-signed certificate) with `--https` or `--ssl`
+```sh
+angular-http-server --https
+```
+
 
 Feedback via: https://github.com/simonh1000/angular-http-server
 

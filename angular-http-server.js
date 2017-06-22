@@ -1,10 +1,29 @@
 #!/usr/bin/env node
 
-var http = require("http");
 var fs = require("fs");
 var argv = require('minimist')(process.argv.slice(2));
 
-var server = http.createServer(function (req, res) {
+var server;
+if (argv.ssl || argv.https) {
+    var pem = require('pem');
+    var https = require('https');
+    pem.createCertificate({days: 1, selfSigned: true}, function(err, keys) {
+        var options = {
+            key: keys.serviceKey,
+            cert: keys.certificate,
+            rejectUnauthorized: false
+        };
+        server = https.createServer(options, requestListener);
+        start();
+    });
+}
+else {
+    var http = require("http");
+    server = http.createServer(requestListener);
+    start();
+}
+
+function requestListener(req, res) {
     // console.log(req.url);
     var url = req.url.split('?')[0]
     var possibleFilename = url.slice(1) || "dummy";
@@ -32,7 +51,7 @@ var server = http.createServer(function (req, res) {
         res.write(fileBuffer);
         res.end();
     });
-});
+}
 
 function getPort() {
     if (argv.p) {
@@ -57,4 +76,8 @@ function toMimeType(ext) {
             return 'text/' + ext;
     }
 }
-server.listen(getPort(), function () { return console.log("Listening on " + getPort()); });
+
+function start() {
+  server.listen(getPort(), function () { return console.log("Listening on " + getPort()); });
+}
+
