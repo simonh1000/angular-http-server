@@ -28,6 +28,18 @@ function requestListener(req, res) {
     var url = req.url.split('?')[0]
     var possibleFilename = url.slice(1) || "dummy";
 
+    if (argv.cors) {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Request-Method', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+      res.setHeader('Access-Control-Allow-Headers', 'authorization, content-type');
+      if ( req.method === 'OPTIONS' ) {
+        res.writeHead(200);
+        res.end();
+        return;
+      }
+    }
+
     fs.stat(possibleFilename, function (err, stats) {
 
         var fileBuffer;
