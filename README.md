@@ -40,6 +40,19 @@ angular-http-server --cors
 
 Feedback via: https://github.com/simonh1000/angular-http-server
 
+## HTTPS Rationale
+
+If you're using `angular-http-server` in production, you wouldn't use a self-signed SSL certificate, so
+do not use `--https` or `--ssl` flags for production. Instead, run `angular-http-server` in http mode
+and forward traffic to it from an SSL-enabled reverse-proxy server (for instance, you can set one
+up with [NGINX](https://www.nginx.com/resources/admin-guide/reverse-proxy/))
+
+If you're only using `angular-http-server` for development or testing, a self-signed SSL certificate
+is fine. For example, end-to-end tests with [Protractor](http://www.protractortest.org/) require the
+Angular application to be actively served, which can be done using a background `angular-http-server`.
+If your end-to-end testing suite requires your application be served over HTTPS, the self-signed
+certificate generated when you pass the `--https`/`--ssl` flag will work fine to provide that.
+
 ## To develop
 
 http://justjs.com/posts/npm-link-developing-your-own-npm-modules-without-tears
