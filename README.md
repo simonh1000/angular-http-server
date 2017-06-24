@@ -28,11 +28,13 @@ And browse to `localhost:8080`.
 
 
 HTTPS can be enabled (using a generated self-signed certificate) with `--https` or `--ssl`
+
 ```sh
 angular-http-server --https
 ```
 
 [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) can be enabled with the --cors flag
+
 ```sh
 angular-http-server --cors
 ```
