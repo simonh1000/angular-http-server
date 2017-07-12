@@ -2,6 +2,7 @@
 
 var fs = require("fs");
 var argv = require('minimist')(process.argv.slice(2));
+var mime = require('mime');
 
 var server;
 
@@ -46,13 +47,9 @@ function requestListener(req, res) {
 
         if (!err && stats.isFile()) {
 
-            var fileExtension = possibleFilename.split('.');
-            // we need last part of array in case of e.g. xxxx.min.css
-            fileExtension = fileExtension[fileExtension.length - 1];
-
             console.log("Sending file: %s", possibleFilename);
             fileBuffer = fs.readFileSync(possibleFilename);
-            res.writeHead(200, { 'Content-Type': toMimeType(fileExtension) });
+            res.writeHead(200, { 'Content-Type': mime.lookup(possibleFilename) });
         } else {
             console.log("Route %s, replacing with index.html", possibleFilename);
             fileBuffer = fs.readFileSync("index.html");
@@ -74,17 +71,6 @@ function getPort() {
         }
     } else {
         return 8080;
-    }
-}
-
-function toMimeType(ext) {
-    switch (ext) {
-        case "js":
-            return "application/javascript";
-        case "png":
-            return "image/png";
-        default:
-            return 'text/' + ext;
     }
 }
 
