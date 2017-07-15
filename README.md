@@ -1,12 +1,8 @@
 # Angular-HTTP-Server
 
-Should work with any Single Page App framework that use a router to change the URL.
+A very simple dev server designed for Single Page App developers in that it supports page refreshes of any route. It returns a file if it exists, or 'index.html' otherwise (i.e. when the url requested is actually a SPA route). Other dev http-servers (correctly) give a 404 when you try to refresh your browser for a page that is a route on a client side app.
 
-## Rationale
-
-Very simple server that returns a file if it exists, or 'index.html' otherwise (i.e. when the url requested is actually a SPA route).
-
-Other simple http-servers (correctly) give a 404 when you try to refresh your browser for a page that is a route on a client side app.
+Originally designed for my Angular work, it should work with any Single Page App framework that uses a router to change the URL (React, Vue JS, Elm,...).
 
 ## To use:
 
@@ -16,16 +12,15 @@ cd /path/to/site
 angular-http-server
 ```
 
+And browse to `localhost:8080`.
+
 ## Options
 
 Specify a port using `-p <port number>`
 
 ```sh
-angular-http-server -p 8080
+angular-http-server -p 9000
 ```
-
-And browse to `localhost:8080`.
-
 
 HTTPS can be enabled (using a generated self-signed certificate) with `--https` or `--ssl`
 
@@ -38,7 +33,6 @@ angular-http-server --https
 ```sh
 angular-http-server --cors
 ```
-
 
 Feedback via: https://github.com/simonh1000/angular-http-server
 
@@ -54,7 +48,3 @@ is fine. For example, end-to-end tests with [Protractor](http://www.protractorte
 Angular application to be actively served, which can be done using a background `angular-http-server`.
 If your end-to-end testing suite requires your application be served over HTTPS, the self-signed
 certificate generated when you pass the `--https`/`--ssl` flag will work fine to provide that.
-
-## To develop
-
-http://justjs.com/posts/npm-link-developing-your-own-npm-modules-without-tears
