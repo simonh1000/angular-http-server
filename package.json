@@ -18,7 +18,7 @@
     "contributors": [{
         "name": "Dale Myszewski",
         "email": "dale@daleslab.com"
-    }],
+    }, {"name": "ckaeslin"}],
     "engines": {
         "node": ">=4.0.0"
     },
