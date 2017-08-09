@@ -42,14 +42,14 @@ function requestListener(req, res) {
     }
 
     fs.stat(possibleFilename, function(err, stats) {
-
         var fileBuffer;
 
         if (!err && stats.isFile()) {
-
-            console.log("Sending file: %s", possibleFilename);
             fileBuffer = fs.readFileSync(possibleFilename);
-            res.writeHead(200, { 'Content-Type': mime.lookup(possibleFilename) });
+            let ct = mime.lookup(possibleFilename);
+            console.log(`Sending ${possibleFilename} with Content-Type ${ct}`);
+            res.writeHead(200, { 'Content-Type': ct });
+
         } else {
             console.log("Route %s, replacing with index.html", possibleFilename);
             fileBuffer = fs.readFileSync("index.html");
