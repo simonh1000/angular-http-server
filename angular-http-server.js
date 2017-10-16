@@ -81,15 +81,15 @@ function start() {
 }
 
 function returnDistFile() {
-    var path = "index.html";
+    var distPath = "index.html";
     var argvPath = argv.path;
     if (argvPath && fs.existsSync(argvPath)) {
-        path = path.join(argvPath, 'index.html');
+        distPath = path.join(argvPath, 'index.html');
     } else if (argvPath && !fs.existsSync(argvPath)) {
         console.log("Can't find %s, using current dir instead", argvPath);
     }
 
-    return fs.readFileSync(path);
+    return fs.readFileSync(distPath);
 }
 
 function resolveUrl(filename) {
