@@ -3,6 +3,7 @@
 var fs = require("fs");
 var argv = require('minimist')(process.argv.slice(2));
 var mime = require('mime');
+var path = require("path");
 
 var server;
 
@@ -27,7 +28,7 @@ if (argv.ssl || argv.https) {
 function requestListener(req, res) {
     // console.log(req.url);
     var url = req.url.split('?')[0]
-    var possibleFilename = url.slice(1) || "dummy";
+    var possibleFilename = resolveUrl(url.slice(1)) || "dummy";
 
     if (argv.cors) {
         res.setHeader('Access-Control-Allow-Origin', '*');
@@ -43,7 +44,6 @@ function requestListener(req, res) {
 
     fs.stat(possibleFilename, function(err, stats) {
         var fileBuffer;
-
         if (!err && stats.isFile()) {
             fileBuffer = fs.readFileSync(possibleFilename);
             let ct = mime.lookup(possibleFilename);
@@ -52,7 +52,7 @@ function requestListener(req, res) {
 
         } else {
             console.log("Route %s, replacing with index.html", possibleFilename);
-            fileBuffer = fs.readFileSync("index.html");
+            fileBuffer = returnDistFile();
             res.writeHead(200, { 'Content-Type': 'text/html' });
         }
 
