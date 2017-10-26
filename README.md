@@ -53,3 +53,7 @@ is fine. For example, end-to-end tests with [Protractor](http://www.protractorte
 Angular application to be actively served, which can be done using a background `angular-http-server`.
 If your end-to-end testing suite requires your application be served over HTTPS, the self-signed
 certificate generated when you pass the `--https`/`--ssl` flag will work fine to provide that.
+
+## Changelog 
+
+1.4.0 - add --path option
