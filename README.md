@@ -34,6 +34,11 @@ angular-http-server --https
 angular-http-server --cors
 ```
 
+Specify a path to serve from 
+```sh
+angular-http-server.js --path example
+```
+
 Feedback via: https://github.com/simonh1000/angular-http-server
 
 ## HTTPS Rationale

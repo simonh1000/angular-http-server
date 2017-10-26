@@ -4,12 +4,14 @@ var fs = require("fs");
 var argv = require('minimist')(process.argv.slice(2));
 var mime = require('mime');
 var path = require("path");
+var pem = require('pem');
+var https = require('https');
+var http = require("http");
 
 var server;
 
+// Start with with/without https
 if (argv.ssl || argv.https) {
-    var pem = require('pem');
-    var https = require('https');
     pem.createCertificate({ days: 1, selfSigned: true }, function(err, keys) {
         var options = {
             key: keys.serviceKey,
@@ -17,30 +19,39 @@ if (argv.ssl || argv.https) {
             rejectUnauthorized: false
         };
         server = https.createServer(options, requestListener);
-        start();
     });
 } else {
-    var http = require("http");
     server = http.createServer(requestListener);
-    start();
 }
 
-function requestListener(req, res) {
-    // console.log(req.url);
-    var url = req.url.split('?')[0]
-    var possibleFilename = resolveUrl(url.slice(1)) || "dummy";
+server.listen(getPort(), function () {
+    return console.log("Listening on " + getPort());
+});
 
+
+// HELPERS
+
+
+function requestListener(req, res) {
+    // Add CORS header if option chosen
     if (argv.cors) {
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Request-Method', '*');
         res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
         res.setHeader('Access-Control-Allow-Headers', 'authorization, content-type');
+        // When the request is for CORS OPTIONS (rather than a page) return just the headers
         if (req.method === 'OPTIONS') {
             res.writeHead(200);
             res.end();
             return;
         }
     }
+
+    // Request is for a page instead
+    // Only interested in the part before any query params
+    var url = req.url.split('?')[0]
+    // Attaches path prefix with --path option
+    var possibleFilename = resolveUrl(url.slice(1)) || "dummy";
 
     fs.stat(possibleFilename, function(err, stats) {
         var fileBuffer;
@@ -74,28 +85,24 @@ function getPort() {
     }
 }
 
-function start() {
-    server.listen(getPort(), function() {
-        return console.log("Listening on " + getPort());
-    });
-}
-
 function returnDistFile() {
-    var distPath = "index.html";
+    var distPath;
     var argvPath = argv.path;
+
     if (argvPath && fs.existsSync(argvPath)) {
         distPath = path.join(argvPath, 'index.html');
     } else if (argvPath && !fs.existsSync(argvPath)) {
         console.log("Can't find %s, using current dir instead", argvPath);
+        distPath = "index.html";
     }
 
     return fs.readFileSync(distPath);
 }
 
 function resolveUrl(filename) {
-    var result = filename;
     if (filename && argv.path) {
-        result = path.join(argv.path, filename);
+        return path.join(argv.path, filename);
+    } else {
+        return filename;
     }
-    return result;
 }
