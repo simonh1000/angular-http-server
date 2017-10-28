@@ -44,8 +44,10 @@ angular-http-server.js --path example
 Feedback via: https://github.com/simonh1000/angular-http-server
 
 ## Self-Signed HTTPS Use
+
 #### Production
-**Do not use `--https` or `--ssl` flags for production.** This is intended for development and/or testing purposes only. Self-signed certificates do not properly verify the identity of the web app and they will cause an end-users web browser to display an error.
+
+**`angular-http-server` is not, and makes no claims to be, a production server.** The `--https` or `--ssl` flagsare intended for development and/or testing purposes only. Self-signed certificates do not properly verify the identity of the web app and they will cause an end-users web browser to display an error.
 
 Within a production env use `angular-http-server` in http mode and forward traffic to it from an SSL-enabled reverse-proxy server (ie. [NGINX](https://www.nginx.com/resources/admin-guide/reverse-proxy/)).
 
@@ -55,3 +57,9 @@ Only use `angular-http-server` with a self-signed certificate for development an
 ## Changelog
 
 1.4.0 - add --path option
+
+## Dev notes
+Test latest version, e.g.
+```sh
+node angular-http-server.js --path example --ssl -p 9000
+```

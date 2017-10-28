@@ -1,6 +1,6 @@
 {
     "name": "angular-http-server",
-    "version": "1.4.0",
+    "version": "1.4.1",
     "author": "Simon Hampton",
     "license": "ISC",
     "description": "Simple http server for developers that supports apps with client side routing",
