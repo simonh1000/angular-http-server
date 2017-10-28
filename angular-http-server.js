@@ -10,6 +10,12 @@ var http = require("http");
 
 var server;
 
+const NO_PATH_FILE_ERROR_MESSAGE = "Error: index.html could not be found in the specified path ";
+const NO_ROOT_FILE_ERROR_MESSAGE = "Error: Could not find index.html within the working directory.";
+
+//As a part of the startup - check to make sure we can access index.html
+returnDistFile(true);
+
 // Start with with/without https
 if (argv.ssl || argv.https) {
     pem.createCertificate({ days: 1, selfSigned: true }, function(err, keys) {
@@ -85,18 +91,36 @@ function getPort() {
     }
 }
 
-function returnDistFile() {
+function returnDistFile(displayFileMessages = false) {
     var distPath;
     var argvPath = argv.path;
 
-    if (argvPath && fs.existsSync(argvPath)) {
-        distPath = path.join(argvPath, 'index.html');
-    } else if (argvPath && !fs.existsSync(argvPath)) {
-        console.log("Can't find %s, using current dir instead", argvPath);
+    if (argvPath) {
+        try {
+          if (displayFileMessages) {
+            console.log("Path specified: %s", argvPath);
+          }
+          distPath = path.join(argvPath, 'index.html');
+          if (displayFileMessages) {
+            console.log("Using %s", distPath);
+          }
+          return fs.readFileSync(distPath);
+        } catch (e) {
+          console.log(NO_PATH_FILE_ERROR_MESSAGE + "%s", argvPath);
+          process.exit(1);
+        }
+    } else {
+        if (displayFileMessages) {
+          console.log("Info: Path not specified using the working directory.");
+        }
         distPath = "index.html";
+        try {
+          return fs.readFileSync(distPath);
+        } catch (e) {
+          console.log(NO_ROOT_FILE_ERROR_MESSAGE);
+          process.exit(1);
+        }
     }
-
-    return fs.readFileSync(distPath);
 }
 
 function resolveUrl(filename) {

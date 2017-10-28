@@ -1,8 +1,10 @@
 # Angular-HTTP-Server
 
-A very simple dev server designed for Single Page App developers in that it supports page refreshes of any route. It returns a file if it exists, or 'index.html' otherwise (i.e. when the url requested is actually a SPA route). Other dev http-servers (correctly) give a 404 when you try to refresh your browser for a page that is a route on a client side app.
+A very simple application server designed for Single Page App (SPA) developers.
 
-Originally designed for my Angular work, it should work with any Single Page App framework that uses a router to change the URL (React, Vue JS, Elm,...).
+It returns a file to the browser if it exists (ex. your-icon.png, index.html) and if can't find a file that matches a given URL it re-directs you to index.html rather than giving a 404 error. The only time it will error out is if it can't locate the index.html file.
+
+Originally designed for my Angular work, this server it meant to work with any Single Page App (SPA) framework that uses a router to change the URL (React, Vue JS, Elm,...).
 
 ## To use:
 
@@ -34,26 +36,22 @@ angular-http-server --https
 angular-http-server --cors
 ```
 
-Specify a path to serve from 
+Specify a path to serve from
 ```sh
 angular-http-server.js --path example
 ```
 
 Feedback via: https://github.com/simonh1000/angular-http-server
 
-## HTTPS Rationale
+## Self-Signed HTTPS Use
+#### Production
+**Do not use `--https` or `--ssl` flags for production.** This is intended for development and/or testing purposes only. Self-signed certificates do not properly verify the identity of the web app and they will cause an end-users web browser to display an error.
 
-If you're using `angular-http-server` in production, you wouldn't use a self-signed SSL certificate, so
-do not use `--https` or `--ssl` flags for production. Instead, run `angular-http-server` in http mode
-and forward traffic to it from an SSL-enabled reverse-proxy server (for instance, you can set one
-up with [NGINX](https://www.nginx.com/resources/admin-guide/reverse-proxy/))
+Within a production env use `angular-http-server` in http mode and forward traffic to it from an SSL-enabled reverse-proxy server (ie. [NGINX](https://www.nginx.com/resources/admin-guide/reverse-proxy/)).
 
-If you're only using `angular-http-server` for development or testing, a self-signed SSL certificate
-is fine. For example, end-to-end tests with [Protractor](http://www.protractortest.org/) require the
-Angular application to be actively served, which can be done using a background `angular-http-server`.
-If your end-to-end testing suite requires your application be served over HTTPS, the self-signed
-certificate generated when you pass the `--https`/`--ssl` flag will work fine to provide that.
+#### Development
+Only use `angular-http-server` with a self-signed certificate for development and/or testing. This can be accomplished by using the self-signed certificate generated when you pass the `--https`/`--ssl` flag. An example of when you should use this feature is with end-to-end testing suites such as [Protractor](http://www.protractortest.org/). or other suites which require the SPA application to be actively served.
 
-## Changelog 
+## Changelog
 
 1.4.0 - add --path option
