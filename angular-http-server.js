@@ -25,14 +25,18 @@ if (argv.ssl || argv.https) {
             rejectUnauthorized: false
         };
         server = https.createServer(options, requestListener);
+        start();
     });
 } else {
     server = http.createServer(requestListener);
+    start();
 }
 
-server.listen(getPort(), function () {
-    return console.log("Listening on " + getPort());
-});
+function start() {
+    server.listen(getPort(), function () {
+        return console.log("Listening on " + getPort());
+    });
+}
 
 
 // HELPERS
