@@ -4,7 +4,7 @@ A very simple application server designed for Single Page App (SPA) developers.
 
 It returns a file to the browser if it exists (ex. your-icon.png, index.html) and if can't find a file that matches a given URL it re-directs you to index.html rather than giving a 404 error. The only time it will error out is if it can't locate the index.html file.
 
-Originally designed for my Angular work, this server it meant to work with any Single Page App (SPA) framework that uses a router to change the URL (React, Vue JS, Elm,...).
+Originally designed for my Angular work, this server will work with any Single Page App (SPA) framework that uses a router to change the URL (React, Vue JS, Elm,...).
 
 ## To use:
 
