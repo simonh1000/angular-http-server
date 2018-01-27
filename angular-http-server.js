@@ -128,6 +128,10 @@ function returnDistFile(displayFileMessages = false) {
 }
 
 function resolveUrl(filename) {
+    // basic santizing to prevent attempts to read files outside of directory set
+    if (filename.includes("..")) {
+        return null;
+    }
     if (filename && argv.path) {
         return path.join(argv.path, filename);
     } else {
