@@ -41,6 +41,11 @@ Specify a path to serve from
 angular-http-server.js --path example
 ```
 
+Disable logging
+```sh
+angular-http-server.js --silent
+```
+
 Feedback via: https://github.com/simonh1000/angular-http-server
 
 ## Self-Signed HTTPS Use
