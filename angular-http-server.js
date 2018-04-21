@@ -68,11 +68,11 @@ function requestListener(req, res) {
         if (!err && stats.isFile()) {
             fileBuffer = fs.readFileSync(possibleFilename);
             let ct = mime.lookup(possibleFilename);
-            console.log(`Sending ${possibleFilename} with Content-Type ${ct}`);
+            log(`Sending ${possibleFilename} with Content-Type ${ct}`);
             res.writeHead(200, { 'Content-Type': ct });
 
         } else {
-            console.log("Route %s, replacing with index.html", possibleFilename);
+            log("Route %s, replacing with index.html", possibleFilename);
             fileBuffer = returnDistFile();
             res.writeHead(200, { 'Content-Type': 'text/html' });
         }
@@ -102,26 +102,26 @@ function returnDistFile(displayFileMessages = false) {
     if (argvPath) {
         try {
           if (displayFileMessages) {
-            console.log("Path specified: %s", argvPath);
+            log("Path specified: %s", argvPath);
           }
           distPath = path.join(argvPath, 'index.html');
           if (displayFileMessages) {
-            console.log("Using %s", distPath);
+            log("Using %s", distPath);
           }
           return fs.readFileSync(distPath);
         } catch (e) {
-          console.log(NO_PATH_FILE_ERROR_MESSAGE + "%s", argvPath);
+          console.warn(NO_PATH_FILE_ERROR_MESSAGE + "%s", argvPath);
           process.exit(1);
         }
     } else {
         if (displayFileMessages) {
-          console.log("Info: Path not specified using the working directory.");
+          log("Info: Path not specified using the working directory.");
         }
         distPath = "index.html";
         try {
           return fs.readFileSync(distPath);
         } catch (e) {
-          console.log(NO_ROOT_FILE_ERROR_MESSAGE);
+          console.warn(NO_ROOT_FILE_ERROR_MESSAGE);
           process.exit(1);
         }
     }
@@ -136,5 +136,11 @@ function resolveUrl(filename) {
         return path.join(argv.path, filename);
     } else {
         return filename;
+    }
+}
+
+function log() {
+    if (!argv.silent) {
+        console.log.apply(console, arguments);
     }
 }
