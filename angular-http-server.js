@@ -63,16 +63,19 @@ function requestListener(req, res) {
     // Attaches path prefix with --path option
     var possibleFilename = resolveUrl(url.slice(1)) || "dummy";
 
-    fs.stat(possibleFilename, function(err, stats) {
+    var safeFileName = path.normalize(possibleFilename).replace(/^(\.\.[\/\\])+/, '');
+    var safeFullFilename = path.join(__dirname, safeFileName);
+
+    fs.stat(safeFullFilename, function(err, stats) {
         var fileBuffer;
         if (!err && stats.isFile()) {
-            fileBuffer = fs.readFileSync(possibleFilename);
-            let ct = mime.lookup(possibleFilename);
-            log(`Sending ${possibleFilename} with Content-Type ${ct}`);
+            fileBuffer = fs.readFileSync(safeFullFilename);
+            let ct = mime.lookup(safeFullFilename);
+            log(`Sending ${safeFullFilename} with Content-Type ${ct}`);
             res.writeHead(200, { 'Content-Type': ct });
 
         } else {
-            log("Route %s, replacing with index.html", possibleFilename);
+            log("Route %s, replacing with index.html", safeFullFilename);
             fileBuffer = returnDistFile();
             res.writeHead(200, { 'Content-Type': 'text/html' });
         }
