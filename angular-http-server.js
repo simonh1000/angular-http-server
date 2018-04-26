@@ -13,12 +13,12 @@ var server;
 const NO_PATH_FILE_ERROR_MESSAGE = "Error: index.html could not be found in the specified path ";
 const NO_ROOT_FILE_ERROR_MESSAGE = "Error: Could not find index.html within the working directory.";
 
-//As a part of the startup - check to make sure we can access index.html
+// As a part of the startup - check to make sure we can access index.html
 returnDistFile(true);
 
 // Start with with/without https
 if (argv.ssl || argv.https) {
-    pem.createCertificate({ days: 1, selfSigned: true }, function(err, keys) {
+    pem.createCertificate({ days: 1, selfSigned: true }, function (err, keys) {
         var options = {
             key: keys.serviceKey,
             cert: keys.certificate,
@@ -64,18 +64,19 @@ function requestListener(req, res) {
     var possibleFilename = resolveUrl(url.slice(1)) || "dummy";
 
     var safeFileName = path.normalize(possibleFilename).replace(/^(\.\.[\/\\])+/, '');
-    var safeFullFilename = path.join(__dirname, safeFileName);
+    // Insert "." to ensure file is read relatively (Security)
+    var safeFullFileName = path.join(".", safeFileName);
 
-    fs.stat(safeFullFilename, function(err, stats) {
+    fs.stat(safeFullFileName, function (err, stats) {
         var fileBuffer;
         if (!err && stats.isFile()) {
-            fileBuffer = fs.readFileSync(safeFullFilename);
-            let ct = mime.lookup(safeFullFilename);
-            log(`Sending ${safeFullFilename} with Content-Type ${ct}`);
+            fileBuffer = fs.readFileSync(safeFullFileName);
+            let ct = mime.lookup(safeFullFileName);
+            log(`Sending ${safeFullFileName} with Content-Type ${ct}`);
             res.writeHead(200, { 'Content-Type': ct });
 
         } else {
-            log("Route %s, replacing with index.html", safeFullFilename);
+            log("Route %s, replacing with index.html", safeFullFileName);
             fileBuffer = returnDistFile();
             res.writeHead(200, { 'Content-Type': 'text/html' });
         }
@@ -104,28 +105,28 @@ function returnDistFile(displayFileMessages = false) {
 
     if (argvPath) {
         try {
-          if (displayFileMessages) {
-            log("Path specified: %s", argvPath);
-          }
-          distPath = path.join(argvPath, 'index.html');
-          if (displayFileMessages) {
-            log("Using %s", distPath);
-          }
-          return fs.readFileSync(distPath);
+            if (displayFileMessages) {
+                log("Path specified: %s", argvPath);
+            }
+            distPath = path.join(argvPath, 'index.html');
+            if (displayFileMessages) {
+                log("Using %s", distPath);
+            }
+            return fs.readFileSync(distPath);
         } catch (e) {
-          console.warn(NO_PATH_FILE_ERROR_MESSAGE + "%s", argvPath);
-          process.exit(1);
+            console.warn(NO_PATH_FILE_ERROR_MESSAGE + "%s", argvPath);
+            process.exit(1);
         }
     } else {
         if (displayFileMessages) {
-          log("Info: Path not specified using the working directory.");
+            log("Info: Path not specified using the working directory.");
         }
         distPath = "index.html";
         try {
-          return fs.readFileSync(distPath);
+            return fs.readFileSync(distPath);
         } catch (e) {
-          console.warn(NO_ROOT_FILE_ERROR_MESSAGE);
-          process.exit(1);
+            console.warn(NO_ROOT_FILE_ERROR_MESSAGE);
+            process.exit(1);
         }
     }
 }
