@@ -1,4 +1,4 @@
-# Single Page Add dev-server
+# Single Page App dev-server
 
 A simple dev-server designed for Single Page App (SPA) developers.
 
