@@ -16,6 +16,12 @@ angular-http-server
 
 And browse to `localhost:8080`.
 
+Open in a default browser automatically by using `--open` alias `-o`
+
+```sh
+angular-http-server --open
+```
+
 ## Options
 
 Specify a port using `-p <port number>`
@@ -23,6 +29,8 @@ Specify a port using `-p <port number>`
 ```sh
 angular-http-server -p 9000
 ```
+
+
 
 HTTPS can be enabled (using a generated self-signed certificate) with `--https` or `--ssl`
 
