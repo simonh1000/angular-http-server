@@ -7,6 +7,9 @@ var path = require("path");
 var pem = require('pem');
 var https = require('https');
 var http = require("http");
+var opn = require('opn');
+
+
 
 var server;
 
@@ -34,6 +37,9 @@ if (argv.ssl || argv.https) {
 
 function start() {
     server.listen(getPort(), function () {
+        if(argv.open == true || argv.o) {
+            opn(((argv.ssl)?'https':'http')+"://localhost:"+getPort());
+        }
         return console.log("Listening on " + getPort());
     });
 }
