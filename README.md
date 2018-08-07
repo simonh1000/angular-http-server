@@ -18,7 +18,8 @@ And browse to `localhost:8080`.
 
 ## Options
 
-Specify a port using `-p <port number>`
+Specify a port using `-p <port number>`<br>
+Note: When the default port or specified port is busy, it automatically keep incrementing untill it sees a usable port to listen.
 
 ```sh
 angular-http-server -p 9000

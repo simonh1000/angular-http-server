@@ -27,23 +27,23 @@ if (argv.ssl || argv.https) {
             cert: keys.certificate,
             rejectUnauthorized: false
         };
-        server = https.createServer(options, requestListener);
-        start();
+				server = https.createServer(options, requestListener);
+				checkPort(getPort());
     });
 } else {
-    server = http.createServer(requestListener);
-    start();
+		server = http.createServer(requestListener);
+		checkPort(getPort());
 }
 
-function start() {
-    server.listen(getPort(), function () {
-        if(argv.open == true || argv.o) {
-            opn(((argv.ssl)?'https':'http')+"://localhost:"+getPort());
-        }
-        return console.log("Listening on " + getPort());
-    });
-}
 
+function start(port) {
+	server.listen(port, function () {
+		if (argv.open == true || argv.o) {
+			opn(((argv.ssl) ? 'https' : 'http') + "://localhost:" + port);
+		}
+		return console.log("Listening on " + port);
+	});
+}
 
 // HELPERS
 
@@ -103,6 +103,33 @@ function getPort() {
     } else {
         return 8080;
     }
+}
+
+function checkPort(port) {
+	isPortTaken(port, function (response) {
+		if (response == true) {
+			console.log("Port " + port + "is busy. Incremeting port");
+			checkPort(++port);
+		} else {
+			start(port);
+		}
+	});
+}
+
+function isPortTaken(port, fn) {
+	var net = require('net')
+	var tester = net.createServer()
+		.once('error', function (err) {
+			if (err.code != 'EADDRINUSE') return fn(err)
+			fn(true)
+		})
+		.once('listening', function () {
+			tester.once('close', function () {
+					fn(false)
+				})
+				.close()
+		})
+		.listen(port)
 }
 
 function returnDistFile(displayFileMessages = false) {
