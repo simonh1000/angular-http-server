@@ -11,7 +11,6 @@ var opn = require('opn');
 
 
 
-var server;
 
 const NO_PATH_FILE_ERROR_MESSAGE = "Error: index.html could not be found in the specified path ";
 const NO_ROOT_FILE_ERROR_MESSAGE = "Error: Could not find index.html within the working directory.";
@@ -19,17 +18,30 @@ const NO_ROOT_FILE_ERROR_MESSAGE = "Error: Could not find index.html within the 
 // As a part of the startup - check to make sure we can access index.html
 returnDistFile(true);
 
-// Start with with/without https
+// Start with/without https
+let server;
 if (argv.ssl || argv.https) {
-    pem.createCertificate({ days: 1, selfSigned: true }, function (err, keys) {
-        var options = {
+    const startSSLCallback = (err, keys) => {
+        if (err) {
+            throw err;
+        }
+
+        const options = {
             key: keys.serviceKey,
             cert: keys.certificate,
             rejectUnauthorized: false
         };
         server = https.createServer(options, requestListener);
         start();
-    });
+    };
+
+    if (argv.key && argv.cert) {
+        const serviceKey = fs.readFileSync(argv.key);
+        const certificate = fs.readFileSync(argv.cert);
+        startSSLCallback(null, { serviceKey, certificate });
+    } else {
+        pem.createCertificate({ days: 1, selfSigned: true }, startSSLCallback);
+    }
 } else {
     server = http.createServer(requestListener);
     start();

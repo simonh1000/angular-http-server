@@ -1,6 +1,6 @@
 # Single Page App dev-server
 
-A simple dev-server designed for Single Page App (SPA) developers. **`angular-http-server` is not, and makes no claims to be, a production server.** 
+A simple dev-server designed for Single Page App (SPA) developers. **`angular-http-server` is not, and makes no claims to be, a production server.**
 
 It returns a file if it exists (ex. your-icon.png, index.html), routes all other requests to index.html (rather than giving a 404 error) so that you SPO's routing can take over. The only time it will error out is if it can't locate the index.html file.
 
@@ -34,6 +34,12 @@ HTTPS can be enabled (using a generated self-signed certificate) with `--https` 
 
 ```sh
 angular-http-server --https
+```
+
+You may manually specify the paths to your self-signed certificate using the `--key` and `--cert` flags
+
+```sh
+angular-http-server --https --key ./secret/key.pem --cert ./secret/cert.pem
 ```
 
 [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) can be enabled with the --cors flag
