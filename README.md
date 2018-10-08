@@ -1,6 +1,6 @@
 # Single Page App dev-server
 
-A simple dev-server designed for Single Page App (SPA) developers. **`angular-http-server` is not, and makes no claims to be, a production server.** 
+A simple dev-server designed for Single Page App (SPA) developers. **`angular-http-server` is not, and makes no claims to be, a production server.**
 
 It returns a file if it exists (ex. your-icon.png, index.html), routes all other requests to index.html (rather than giving a 404 error) so that you SPO's routing can take over. The only time it will error out is if it can't locate the index.html file.
 
@@ -52,7 +52,40 @@ Disable logging
 angular-http-server.js --silent
 ```
 
+All options can be specified by a config file, optionally read via `--config` flag.
+CLI options take precedence over any options read from the config file.
+```sh
+angular-http-server --config configs/angular-http-server.config.js
+```
+
 Feedback via: https://github.com/simonh1000/angular-http-server
+
+## Config File
+The config file can either export an object of parameters, or a function that will be passed in the parsed `argv` from minimalist.
+
+Simple example:
+```js
+module.exports = {
+    p: 8081,
+    cors: true,
+    silent: true,
+};
+```
+
+Complicated example:
+```js
+module.exports = (argv) => {
+    const config = {
+        cors: true,
+    };
+
+    if (argv.p === 443) {
+        config.ssl = true;
+    }
+
+    return config;
+};
+```
 
 ## Self-Signed HTTPS Use
 
