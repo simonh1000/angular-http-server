@@ -13,7 +13,7 @@
         "routing"
     ],
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "mocha"
     },
     "contributors": [
         {
@@ -39,5 +39,9 @@
         "minimist": "^1.2.0",
         "opn": "^5.3.0",
         "pem": "^1.9.7"
+    },
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "mocha": "^5.2.0"
     }
 }

@@ -1,6 +1,6 @@
 # Single Page App dev-server
 
-A simple dev-server designed for Single Page App (SPA) developers. **`angular-http-server` is not, and makes no claims to be, a production server.** 
+A simple dev-server designed for Single Page App (SPA) developers. **`angular-http-server` is not, and makes no claims to be, a production server.**
 
 It returns a file if it exists (ex. your-icon.png, index.html), routes all other requests to index.html (rather than giving a 404 error) so that you SPO's routing can take over. The only time it will error out is if it can't locate the index.html file.
 
@@ -65,7 +65,12 @@ The `--https` or `--ssl` flags are intended for development and/or testing purpo
 1.5.0 - add --open option
 1.4.0 - add --path option
 
-## Dev notes
+## Testing
+
+Run unit tests with
+```sh
+$ yarn run test
+```
 
 Test latest version, e.g.
 ```sh
