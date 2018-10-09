@@ -9,7 +9,7 @@ var https = require('https');
 var http = require("http");
 var opn = require('opn');
 
-const getFileNameFromUrl = require('./lib/get-file-path-from-url');
+const getFilePathFromUrl = require('./lib/get-file-path-from-url');
 
 
 
@@ -65,7 +65,7 @@ function requestListener(req, res) {
         }
     }
 
-    const safeFullFileName = getFileNameFromUrl(req.url, basePath);
+    const safeFullFileName = getFilePathFromUrl(req.url, basePath);
 
     fs.stat(safeFullFileName, function (err, stats) {
         var fileBuffer;
