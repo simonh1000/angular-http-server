@@ -16,6 +16,26 @@ var server;
 const NO_PATH_FILE_ERROR_MESSAGE = "Error: index.html could not be found in the specified path ";
 const NO_ROOT_FILE_ERROR_MESSAGE = "Error: Could not find index.html within the working directory.";
 
+
+if (argv.config) {
+  let configPath;
+  if (path.isAbsolute(argv.config)) {
+    configPath = argv.config;
+  } else {
+    configPath = path.join(process.cwd(), argv.config);
+  }
+  const getConfig = require(configPath);
+  let config;
+  if (typeof getConfig === 'function') {
+      config = getConfig(argv);
+  } else {
+      config = getConfig;
+  }
+
+  // supplement argv with config, but CLI args take precedence
+  argv = Object.assign({}, config, argv);
+}
+
 // As a part of the startup - check to make sure we can access index.html
 returnDistFile(true);
 
