@@ -44,12 +44,12 @@ angular-http-server --cors
 
 Specify a path to serve from
 ```sh
-angular-http-server.js --path example
+angular-http-server --path example
 ```
 
 Disable logging
 ```sh
-angular-http-server.js --silent
+angular-http-server --silent
 ```
 
 Feedback via: https://github.com/simonh1000/angular-http-server

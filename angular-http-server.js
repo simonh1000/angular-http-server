@@ -9,7 +9,7 @@ var https = require('https');
 var http = require("http");
 var opn = require('opn');
 
-
+const useHttps = argv.ssl || argv.https;
 
 var server;
 
@@ -20,7 +20,7 @@ const NO_ROOT_FILE_ERROR_MESSAGE = "Error: Could not find index.html within the 
 returnDistFile(true);
 
 // Start with with/without https
-if (argv.ssl || argv.https) {
+if (useHttps) {
     pem.createCertificate({ days: 1, selfSigned: true }, function (err, keys) {
         var options = {
             key: keys.serviceKey,
@@ -38,7 +38,7 @@ if (argv.ssl || argv.https) {
 function start() {
     server.listen(getPort(), function () {
         if(argv.open == true || argv.o) {
-            opn(((argv.ssl)?'https':'http')+"://localhost:"+getPort());
+            opn(((useHttps) ? 'https' : 'http') + "://localhost:" + getPort());
         }
         return console.log("Listening on " + getPort());
     });
@@ -69,9 +69,7 @@ function requestListener(req, res) {
     // Attaches path prefix with --path option
     var possibleFilename = resolveUrl(url.slice(1)) || "dummy";
 
-    var safeFileName = path.normalize(possibleFilename).replace(/^(\.\.[\/\\])+/, '');
-    // Insert "." to ensure file is read relatively (Security)
-    var safeFullFileName = path.join(".", safeFileName);
+    var safeFullFileName = safeFileName(possibleFilename);
 
     fs.stat(safeFullFileName, function (err, stats) {
         var fileBuffer;
@@ -153,4 +151,11 @@ function log() {
     if (!argv.silent) {
         console.log.apply(console, arguments);
     }
+}
+
+// Prevents a file path being provided that uses '..'
+function safeFileName(possibleFilename) {
+    let tmp = path.normalize(possibleFilename).replace(/^(\.\.[\/\\])+/, '');
+    // Insert "." to ensure file is read relatively (Security)
+    return path.join(".", tmp);
 }
