@@ -9,8 +9,6 @@ var https = require("https");
 var http = require("http");
 var opn = require("opn");
 
-const useHttps = argv.ssl || argv.https;
-
 var server;
 
 const NO_PATH_FILE_ERROR_MESSAGE =
@@ -36,6 +34,8 @@ if (argv.config) {
     // supplement argv with config, but CLI args take precedence
     argv = Object.assign({}, config, argv);
 }
+
+const useHttps = argv.ssl || argv.https;
 
 // As a part of the startup - check to make sure we can access index.html
 returnDistFile(true);
