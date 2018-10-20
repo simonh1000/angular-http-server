@@ -99,9 +99,14 @@ The `--https` or `--ssl` flags are intended for development and/or testing purpo
 1.5.0 - add --open option (thanks tluanga34)
 1.4.0 - add --path option (thanks nick-bogdanov)
 
-## Dev notes
+## Contributing
 
-Test latest version, e.g.
+Contributions are welcome.
+
+Use prettier for formatting
+
+Testing - try:
+
 ```sh
 node angular-http-server.js --path example --ssl -p 9000
 ```
