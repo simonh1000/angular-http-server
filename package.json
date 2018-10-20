@@ -1,13 +1,14 @@
 {
     "name": "angular-http-server",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "author": "Simon Hampton",
     "license": "ISC",
-    "description": "Simple http server for developers that supports apps with client side routing",
+    "description": "Simple http server for developers of apps with client side routing",
     "main": "angular-http-server.js",
     "repository": "https://github.com/simonh1000/angular-http-server.git",
     "keywords": [
         "angular",
+        "spa",
         "http-server",
         "server",
         "routing"

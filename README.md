@@ -101,6 +101,7 @@ The `--https` or `--ssl` flags are intended for development and/or testing purpo
 
 ## Changelog
 
+1.7.0 - add option to include own ssl certificate (thanks dpraul)
 1.6.0 - add --config option (thanks dpraul)
 1.5.0 - add --open option (thanks tluanga34)
 1.4.0 - add --path option (thanks nick-bogdanov)
