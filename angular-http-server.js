@@ -9,9 +9,6 @@ var https = require("https");
 var http = require("http");
 var opn = require("opn");
 
-const useHttps = argv.ssl || argv.https;
-
-var server;
 
 const NO_PATH_FILE_ERROR_MESSAGE =
     "Error: index.html could not be found in the specified path ";
@@ -37,20 +34,35 @@ if (argv.config) {
     argv = Object.assign({}, config, argv);
 }
 
+const useHttps = argv.ssl || argv.https;
+
 // As a part of the startup - check to make sure we can access index.html
 returnDistFile(true);
 
-// Start with with/without https
+// Start with/without https
+let server;
 if (useHttps) {
-    pem.createCertificate({ days: 1, selfSigned: true }, function(err, keys) {
-        var options = {
+    const startSSLCallback = (err, keys) => {
+        if (err) {
+            throw err;
+        }
+
+        const options = {
             key: keys.serviceKey,
             cert: keys.certificate,
             rejectUnauthorized: false
         };
         server = https.createServer(options, requestListener);
         start();
-    });
+    };
+
+    if (argv.key && argv.cert) {
+        const serviceKey = fs.readFileSync(argv.key);
+        const certificate = fs.readFileSync(argv.cert);
+        startSSLCallback(null, { serviceKey, certificate });
+    } else {
+        pem.createCertificate({ days: 1, selfSigned: true }, startSSLCallback);
+    }
 } else {
     server = http.createServer(requestListener);
     start();

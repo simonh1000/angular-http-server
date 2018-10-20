@@ -36,6 +36,12 @@ HTTPS can be enabled (using a generated self-signed certificate) with `--https` 
 angular-http-server --https
 ```
 
+You may manually specify the paths to your self-signed certificate using the `--key` and `--cert` flags
+
+```sh
+angular-http-server --https --key ./secret/key.pem --cert ./secret/cert.pem
+```
+
 [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) can be enabled with the --cors flag
 
 ```sh
