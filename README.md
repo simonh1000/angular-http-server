@@ -111,6 +111,13 @@ Contributions are welcome.
 
 Use prettier for formatting
 
+## Testing
+
+Run unit tests with
+```sh
+$ yarn run test
+```
+
 Testing - try:
 
 ```sh
