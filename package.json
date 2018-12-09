@@ -18,6 +18,8 @@
     },
     "contributors": [
         {
+            "name": "dpraul"
+        },{
             "name": "Dale Myszewski",
             "email": "dale@daleslab.com"
         },
@@ -33,7 +35,7 @@
     },
     "preferGlobal": true,
     "bin": {
-        "angular-http-server": "./angular-http-server.js"
+        "angular-http-server": "./lib/angular-http-server.js"
     },
     "dependencies": {
         "mime": "^1.3.6",
