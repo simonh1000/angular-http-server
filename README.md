@@ -109,7 +109,7 @@ The `--https` or `--ssl` flags are intended for development and/or testing purpo
 
 ## Contributing
 
-Contributions are welcome.
+Contributions are welcome, but do create an issue first to discuss.
 
 Use prettier for formatting
 
