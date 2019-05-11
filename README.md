@@ -53,6 +53,11 @@ Specify a path to serve from
 angular-http-server --path example
 ```
 
+Specify the base href of the application
+```sh
+angular-http-server --baseHref myapp
+```
+
 Disable logging
 ```sh
 angular-http-server --silent
