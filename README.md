@@ -2,9 +2,9 @@
 
 A simple dev-server designed for Single Page App (SPA) developers. **`angular-http-server` is not, and makes no claims to be, a production server.**
 
-It returns a file if it exists (ex. your-icon.png, index.html), routes all other requests to index.html (rather than giving a 404 error) so that you SPO's routing can take over. The only time it will error out is if it can't locate the index.html file.
+It returns a file if it exists (ex. your-icon.png, index.html), routes all other requests to index.html (rather than giving a 404 error) so that you SPA's routing can take over. The only time it will error out is if it can't locate the index.html file.
 
-Originally designed for my Angular work, this dev-server will work with any Single Page App (SPA) framework that uses URL routing (React, Vue JS, Elm,...).
+Originally designed for my Angular work, this dev-server will work with any Single Page App (SPA) framework that uses URL routing (React, Vue, Elm, ...).
 
 ## To use:
 
@@ -106,6 +106,7 @@ The `--https` or `--ssl` flags are intended for development and/or testing purpo
 
 ## Changelog
 
+ - 1.9.0 - adds --baseHref (thanks bertbaron)
  - 1.8.0 - rewrite of path resolution (thanks dpraul)
  - 1.7.0 - add option to include own ssl certificate (thanks dpraul)
  - 1.6.0 - add --config option (thanks dpraul)
