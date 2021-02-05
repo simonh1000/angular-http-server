@@ -60,6 +60,11 @@ Specify the base href of the application
 angular-http-server --baseHref myapp
 ```
 
+Specify the rootFile of the application
+```sh
+angular-http-server --rootFile myindex.html
+```
+
 Disable logging
 
 ```sh
