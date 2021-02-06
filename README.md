@@ -49,22 +49,26 @@ angular-http-server --cors
 ```
 
 Specify a path to serve from
+
 ```sh
 angular-http-server --path example
 ```
 
 Specify the base href of the application
+
 ```sh
 angular-http-server --baseHref myapp
 ```
 
 Disable logging
+
 ```sh
 angular-http-server --silent
 ```
 
 All options can be specified by a config file, optionally read via `--config` flag.
 CLI options take precedence over any options read from the config file.
+
 ```sh
 angular-http-server --config configs/angular-http-server.config.js
 ```
@@ -72,9 +76,11 @@ angular-http-server --config configs/angular-http-server.config.js
 Feedback via: https://github.com/simonh1000/angular-http-server
 
 ## Config File
+
 The config file can either export an object of parameters, or a function that will be passed in the parsed `argv` from minimalist.
 
 Simple example:
+
 ```js
 module.exports = {
     p: 8081,
@@ -84,6 +90,7 @@ module.exports = {
 ```
 
 Complicated example:
+
 ```js
 module.exports = (argv) => {
     const config = {
@@ -106,12 +113,12 @@ The `--https` or `--ssl` flags are intended for development and/or testing purpo
 
 ## Changelog
 
- - 1.9.0 - adds --baseHref (thanks bertbaron)
- - 1.8.0 - rewrite of path resolution (thanks dpraul)
- - 1.7.0 - add option to include own ssl certificate (thanks dpraul)
- - 1.6.0 - add --config option (thanks dpraul)
- - 1.5.0 - add --open option (thanks tluanga34)
- - 1.4.0 - add --path option (thanks nick-bogdanov)
+-   1.9.0 - adds --baseHref (thanks bertbaron)
+-   1.8.0 - rewrite of path resolution (thanks dpraul)
+-   1.7.0 - add option to include own ssl certificate (thanks dpraul)
+-   1.6.0 - add --config option (thanks dpraul)
+-   1.5.0 - add --open option (thanks tluanga34)
+-   1.4.0 - add --path option (thanks nick-bogdanov)
 
 ## Contributing
 
@@ -122,8 +129,9 @@ Use prettier for formatting
 ## Testing
 
 Run unit tests with
+
 ```sh
-$ yarn run test
+$ npm run test
 ```
 
 Testing - try:

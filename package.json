@@ -1,6 +1,6 @@
 {
     "name": "angular-http-server",
-    "version": "1.9.0",
+    "version": "1.9.1",
     "author": "Simon Hampton",
     "license": "ISC",
     "description": "Simple http server for developers of apps with client side routing",
@@ -19,7 +19,8 @@
     "contributors": [
         {
             "name": "dpraul"
-        },{
+        },
+        {
             "name": "Dale Myszewski",
             "email": "dale@daleslab.com"
         },
