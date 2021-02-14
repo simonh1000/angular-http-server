@@ -61,6 +61,7 @@ angular-http-server --baseHref myapp
 ```
 
 Specify the rootFile of the application
+
 ```sh
 angular-http-server --rootFile myindex.html
 ```
@@ -118,6 +119,7 @@ The `--https` or `--ssl` flags are intended for development and/or testing purpo
 
 ## Changelog
 
+-   1.10.0 - adds --rootPath (thanks Aakash)
 -   1.9.0 - adds --baseHref (thanks bertbaron)
 -   1.8.0 - rewrite of path resolution (thanks dpraul)
 -   1.7.0 - add option to include own ssl certificate (thanks dpraul)
