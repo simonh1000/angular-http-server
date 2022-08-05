@@ -116,7 +116,7 @@ module.exports = (argv) => {
 #### Enabling proxy
 
 The server contains a simple http proxy. 
-The proxy must be configured in the config file
+The proxy must be configured in the config file.
 To enable this proxy:
 
 ```sh
