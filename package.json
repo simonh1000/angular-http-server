@@ -33,6 +33,9 @@
         {
             "name": "Aakash Khapare",
             "email": "amkhapare@gmail.com"
+        },
+        {
+            "name": "AVierwind"
         }
     ],
     "engines": {
@@ -43,6 +46,7 @@
         "angular-http-server": "./lib/angular-http-server.js"
     },
     "dependencies": {
+        "http-proxy": "^1.18.1",
         "mime": "^1.3.6",
         "minimist": "^1.2.6",
         "opn": "^5.5.0",
@@ -50,6 +54,7 @@
     },
     "devDependencies": {
         "chai": "^4.2.0",
-        "mocha": "^5.2.0"
+        "mocha": "^5.2.0",
+        "node-mocks-http": "^1.11.0"
     }
 }

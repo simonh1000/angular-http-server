@@ -111,6 +111,41 @@ module.exports = (argv) => {
 };
 ```
 
+## Http proxy
+
+#### Enabling proxy
+
+The server contains a simple http proxy. 
+The proxy must be configured in the config file
+To enable this proxy:
+
+```sh
+angular-http-server --config configs/angular-http-server.config.js --useProxy true
+```
+
+#### configuring proxy
+
+To configure the proxy add a proxyConfig object to your config file. 
+The proxyConfig should be an array of configs with two properties: a forward property which must be a string array listing url parts which should trigger the proxy, and a target property which should define the target to proxy to.
+
+simple example:
+
+```js
+module.exports = {
+    proxyConfig: [
+        {
+        forward: ['api/example-api', 'api-proxy/example'],
+        target: 'localhost:5000',
+    },
+        {
+        forward: ['api/example-api-2', 'api-proxy-2/example'],
+        target: 'localhost:6000',
+    }
+    ],
+};
+```
+
+
 ## Self-Signed HTTPS Use
 
 #### Production
