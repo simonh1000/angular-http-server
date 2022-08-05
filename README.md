@@ -136,11 +136,11 @@ module.exports = {
         {
         forward: ['api/example-api', 'api-proxy/example'],
         target: 'localhost:5000',
-    },
+        },
         {
         forward: ['api/example-api-2', 'api-proxy-2/example'],
         target: 'localhost:6000',
-    }
+        }
     ],
 };
 ```
