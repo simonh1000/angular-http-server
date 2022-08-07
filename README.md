@@ -125,14 +125,14 @@ angular-http-server --config configs/angular-http-server.config.js --useProxy tr
 
 #### configuring proxy
 
-To configure the proxy add a proxyConfig object to your config file. 
-The proxyConfig should be an array of configs with two properties: a forward property which must be a string array listing url parts which should trigger the proxy, and a target property which should define the target to proxy to.
+To configure the proxy add a proxy object to your config file. 
+The proxy should be an array of configs with two properties: a forward property which must be a string array listing url parts which should trigger the proxy, and a target property which should define the target to proxy to.
 
 simple example:
 
 ```js
 module.exports = {
-    proxyConfig: [
+    proxy: [
         {
         forward: ['api/example-api', 'api-proxy/example'],
         target: 'localhost:5000',

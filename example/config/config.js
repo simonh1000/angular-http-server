@@ -1,5 +1,5 @@
 module.exports = {
-    proxyConfig: [
+    proxy: [
         {
             forward: ['beach.jpg', 'api-proxy/example'],
             target: 'www.google.nl',
