@@ -7,6 +7,7 @@ module.exports = {
         {
             forward: ['api/example-api-2', 'image.svg'],
             target: 'www.github.com',
+            protocol: 'http'
         },
     ],
 };
