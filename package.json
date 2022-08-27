@@ -1,6 +1,6 @@
 {
     "name": "angular-http-server",
-    "version": "1.10.1",
+    "version": "1.11.0",
     "author": "Simon Hampton",
     "license": "ISC",
     "description": "Simple http server for developers of apps with client side routing",
@@ -39,7 +39,7 @@
         }
     ],
     "engines": {
-        "node": ">=8.0.0"
+        "node": ">=10.0.0"
     },
     "preferGlobal": true,
     "bin": {
