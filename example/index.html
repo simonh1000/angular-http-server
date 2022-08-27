@@ -21,15 +21,12 @@
     <script>
         const options = {
             method: "GET",
-            headers: {
-                "X-User-Agent": "desktop",
-            },
+            headers: {},
         };
 
         const btn = document.querySelector("#get-data");
         const dataDiv = document.querySelector("#data");
         btn.addEventListener("click", () => {
-            // fetch("/todos/1", options)
             fetch("/todos/1", options)
                 .then((res) => res.json())
                 .then((d) => (dataDiv.innerHTML = JSON.stringify(d)))
