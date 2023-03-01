@@ -127,7 +127,8 @@ angular-http-server --config configs/angular-http-server.config.js --useProxy tr
 
 To configure the proxy add a proxy object to your config file.
 The proxy should be an array of configs with two required properties: a forward property which must be a string array listing url parts which should trigger the proxy, and a target property which should define the target to proxy to.
-The config can also contain an optional protocol option, when this is absent the server will default to https
+The config can also contain an optional protocol option, when this is absent the server will default to https.
+It is possible to use the pathRewrite option, it's an object with regular expressions as keys and replacement path as values.
 
 simple example:
 
@@ -142,6 +143,14 @@ module.exports = {
         {
             forward: ["api/example-api-2", "api-proxy-2/example"],
             target: "localhost:6000",
+        },
+        {
+            forward: ["api/example-rewrite", "api-2/rewrite"],
+            target: "localhost:7000",
+            pathRewrite: {
+                "/example-rewrite/", "new-path",
+                "/api-2/", "new-path-2"
+            }
         },
     ],
 };
