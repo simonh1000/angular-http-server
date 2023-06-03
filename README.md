@@ -151,7 +151,7 @@ module.exports = {
 
 #### Production
 
-The `--https` or `--ssl` flags are intended for development and/or testing purposes only. Self-signed certificates do not properly verify the identity of the web app and they will cause an end-users web browser to display an error. Only use `angular-http-server` with a self-signed certificate for development and/or testing. This can be accomplished by using the self-signed certificate generated when you pass the `--https`/`--ssl` flag. An example of when you should use this feature is with end-to-end testing suites such as [Protractor](http://www.protractortest.org/). or other suites which require the SPA application to be actively served.
+The `--https` or `--ssl` flags are intended for **development and/or testing purposes only**. Self-signed certificates do not properly verify the identity of the web app and they will cause an end-users web browser to display an error. This can be accomplished by using the self-signed certificate generated when you pass the `--https`/`--ssl` flag. An example of when you should use this feature is with end-to-end testing suites such as [Protractor](http://www.protractortest.org/) or other suites which require the SPA application to be served over https.
 
 ## Changelog
 
