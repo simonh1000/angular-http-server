@@ -66,6 +66,12 @@ Specify the rootFile of the application
 angular-http-server --rootFile myindex.html
 ```
 
+Specify the host of the application. It's used when open is true to redirect browser to navigate for the host. Example: http://mydomain.local:8080
+
+```sh
+angular-http-server --open --host mydomain.local
+```
+
 Disable logging
 
 ```sh
@@ -155,6 +161,7 @@ The `--https` or `--ssl` flags are intended for **development and/or testing pur
 
 ## Changelog
 
+-   1.12.0 - adds host support (thanks jpwerka)
 -   1.11.0 - adds proxy support (thanks AVierwind)
 -   1.10.0 - adds --rootPath (thanks Aakash)
 -   1.9.0 - adds --baseHref (thanks bertbaron)
