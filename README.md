@@ -66,6 +66,12 @@ Specify the rootFile of the application
 angular-http-server --rootFile myindex.html
 ```
 
+Specify the host of the application. It's used when open is true to redirect browser to navigate for the host. Example: http://mydomain.local:8080
+
+```sh
+angular-http-server --open --host mydomain.local
+```
+
 Disable logging
 
 ```sh
@@ -152,10 +158,11 @@ module.exports = {
 
 #### Production
 
-The `--https` or `--ssl` flags are intended for development and/or testing purposes only. Self-signed certificates do not properly verify the identity of the web app and they will cause an end-users web browser to display an error. Only use `angular-http-server` with a self-signed certificate for development and/or testing. This can be accomplished by using the self-signed certificate generated when you pass the `--https`/`--ssl` flag. An example of when you should use this feature is with end-to-end testing suites such as [Protractor](http://www.protractortest.org/). or other suites which require the SPA application to be actively served.
+The `--https` or `--ssl` flags are intended for **development and/or testing purposes only**. Self-signed certificates do not properly verify the identity of the web app and they will cause an end-users web browser to display an error. This can be accomplished by using the self-signed certificate generated when you pass the `--https`/`--ssl` flag. An example of when you should use this feature is with end-to-end testing suites such as [Protractor](http://www.protractortest.org/) or other suites which require the SPA application to be served over https.
 
 ## Changelog
 
+-   1.12.0 - adds host support (thanks jpwerka)
 -   1.11.0 - adds proxy support (thanks AVierwind)
 -   1.10.0 - adds --rootPath (thanks Aakash)
 -   1.9.0 - adds --baseHref (thanks bertbaron)
