@@ -54,7 +54,7 @@ Specify a path to serve from
 angular-http-server --path example
 ```
 
-Specify the base href of the application
+Specify the base href of the application, without leading slash
 
 ```sh
 angular-http-server --baseHref myapp
