@@ -36,7 +36,10 @@
         },
         {
             "name": "AVierwind"
-        }
+        },
+	{
+	    "name": "Johan Vromans"
+	}
     ],
     "engines": {
         "node": ">=10.0.0"
