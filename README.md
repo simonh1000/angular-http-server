@@ -1,6 +1,8 @@
 # Single Page App dev-server
 
-A simple dev-server designed for Single Page App (SPA) developers. **`angular-http-server` is not, and makes no claims to be, a production server.**
+A simple dev-server designed for all Single Page App (SPA) developers - don't let the reference to angular confuse you. 
+
+**This is not, and makes no claims to be, a production server.**
 
 It returns a file if it exists (ex. your-icon.png, index.html), routes all other requests to index.html (rather than giving a 404 error) so that you SPA's routing can take over. The only time it will error out is if it can't locate the index.html file.
 
