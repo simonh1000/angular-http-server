@@ -26,10 +26,11 @@ Specify a port using `-p <port number>`
 angular-http-server -p 9000
 ```
 
-Open in a default browser automatically by using `--open` alias `-o`
+### Open browser automatically
 
 ```sh
 angular-http-server --open
+angular-http-server -o
 ```
 
 HTTPS can be enabled (using a generated self-signed certificate) with `--https` or `--ssl`
@@ -163,6 +164,7 @@ The `--https` or `--ssl` flags are intended for **development and/or testing pur
 
 ## Changelog
 
+-   1.13.0 - Use ESM syntax (thanks Claude ;-))
 -   1.12.0 - adds host support (thanks jpwerka)
 -   1.11.0 - adds proxy support (thanks AVierwind)
 -   1.10.0 - adds --rootPath (thanks Aakash)
@@ -178,6 +180,12 @@ The `--https` or `--ssl` flags are intended for **development and/or testing pur
 Contributions are welcome, but do create an issue first to discuss.
 
 Use prettier for formatting
+
+## Dev
+
+```sh 
+npm run dev
+```
 
 ## Testing
 
